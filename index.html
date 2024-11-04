@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flymr World Travels</title>
+    <style>
+        /* Main Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: #1f11c0;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+        .header .contact-us {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .background {
+            background-image: url('bg.png'); /* Replace with your background image */
+            background-size: cover;
+            background-position: center;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .form-container {
+            background-color: #00274d;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .form-container:hover {
+            background-color: #001f3b;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .form-container h1 {
+            color: #ffffff;
+        }
+        .form-container label {
+            color: #ffffff;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            color: #00274d;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background: #ffffff;
+            color: #00274d;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container button:hover {
+            background: #f0f0f0;
+        }
+        .agent-code {
+            display: none;
+        }
+        footer {
+            background-color:#1f11c0;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .footer-left, .footer-right {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 10px;
+        }
+        .footer-left a, .footer-right a {
+            color: #fff;
+            text-decoration: underline;
+            display: block;
+        }
+        .footer-bottom {
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #ccc;
+        }
+            /* WhatsApp Floating Icon */
+            .whatsapp-support {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            text-align: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        .whatsapp-support-text {
+            background-color: #f9f9fb;
+            color: #ff0909;
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .whatsapp-icon {
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .whatsapp-icon img {
+            width: 40px;
+            height: 40px;
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>Flymr World Travels</h1>
+        </div>
+        <a href="#contact" class="contact-us">Contact Us</a>
+    </header>
+
+    <div class="background">
+        <div class="form-container">
+            <h1>Flight Search</h1>
+            <form id="flightForm">
+                <label for="fromWhere">From Where:</label>
+                <select id="fromWhere" name="fromWhere" required>
+                    <option value="" disabled selected>Select your departure location</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Kuala Lumpur">Kuala Lumpur</option>
+                    <option value="Jessore">Jessore</option>
+                    <option value="Sylhet">Sylhet</option>
+                    <option value="Coxs Bazar">Coxs Bazar</option>
+                    <option value="Syedpur">Syedpur</option>
+                    <option value="Barishal">Barishal</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Kolkata">Kolkata</option>
+                </select>
+
+                <label for="toWhere">To Where:</label>
+                <select id="toWhere" name="toWhere" required>
+                    <option value="" disabled selected>Select your destination</option>
+                </select>
+
+                <label for="ticketType">Ticket Type:</label>
+                <select id="ticketType" name="ticketType" required>
+                    <option value="One Way">One Way</option>
+                    <option value="Return">Return</option>
+                </select>
+
+                <label for="flyingDate">Flying Date:</label>
+                <input type="date" id="flyingDate" name="flyingDate" required>
+
+                <label for="returnDate">Return Date:</label>
+                <input type="date" id="returnDate" name="returnDate" disabled>
+
+                <label for="airline">Preferred Airline:</label>
+                <input type="text" id="airline" name="airline">
+
+                <label for="userType">Are you a:</label>
+                <select id="userType" name="userType" required>
+                    <option value="Customer" selected>Customer</option>
+                    <option value="Agent">Agent</option>
+                </select>
+
+                <div id="agentCodeContainer" class="agent-code">
+                    <label for="agentCode">Agent Code:</label>
+                    <input type="text" id="agentCode" name="agentCode">
+                </div>
+
+                <button type="submit">Send to WhatsApp</button>
+            </form>
+        </div>
+    </div>
+    <!-- Floating WhatsApp Support Icon with Text -->
+    <div class="whatsapp-support">
+        <div class="whatsapp-support-text" >Get Support 24/7</div>
+        <div class="whatsapp-icon">
+            <a href="https://wa.me/60172335577" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Support">
+            </a>
+        </div>
+    </div>
+    
+    
+    <footer>
+        <div class="footer-left">
+            <strong>Flymr World Travels</strong><br>
+            <strong>Whatsapp: +60172335577</strong><br>
+            Our location: 37, Jelan Besar, 4300, Kajang, Malaysia<br>
+            <a href="https://goo.gl/maps/link" target="_blank">View on Google Maps</a>
+        </div>
+       
+        <div class="footer-bottom">
+            All rights reserved &copy; 2024 Flymr World Travels
+        </div>
+    </footer>
+
+    <script>
+        const fromWhere = document.getElementById('fromWhere');
+        const toWhere = document.getElementById('toWhere');
+        const ticketType = document.getElementById('ticketType');
+        const returnDate = document.getElementById('returnDate');
+        const userType = document.getElementById('userType');
+        const agentCodeContainer = document.getElementById('agentCodeContainer');
+
+        fromWhere.addEventListener('change', function() {
+            const options = [
+                "Dhaka", "Kuala Lumpur","Nepal", "Jessore", "Sylhet",
+                "Cox's Bazar", "Syedpur", "Barishal", "Chittagong", 
+                "Nepal", "Kolkata"
+            ];
+
+            toWhere.innerHTML = '<option value="" disabled selected>Select your destination</option>' +
+                options
+                .filter(option => option !== fromWhere.value)
+                .map(option => `<option value="${option}">${option}</option>`)
+                .join('');
+        });
+
+        ticketType.addEventListener('change', function() {
+            returnDate.disabled = ticketType.value !== 'Return';
+        });
+
+        userType.addEventListener('change', function() {
+            agentCodeContainer.style.display = userType.value === 'Agent' ? 'block' : 'none';
+        });
+
+        document.getElementById('flightForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selectedUserType = userType.value;
+            const selectedFromWhere = fromWhere.value;
+            const selectedToWhere = toWhere.value;
+            const selectedTicketType = ticketType.value;
+            const selectedFlyingDate = document.getElementById('flyingDate').value;
+            const selectedReturnDate = returnDate.value;
+            const selectedAirline = document.getElementById('airline').value;
+            const agentCode = document.getElementById('agentCode').value;
+
+            let message = `Type: ${selectedUserType}\nFrom: ${selectedFromWhere}\nTo: ${selectedToWhere}\n` +
+                `Ticket: ${selectedTicketType}\nFlying Date: ${selectedFlyingDate}\n`;
+                
+            if (selectedTicketType === 'Return') {
+                message += `Return Date: ${selectedReturnDate}\n`;
+            }
+
+            message += `Airline: ${selectedAirline}\n`;
+
+            if (selectedUserType === 'Agent') {
+                message += `Agent Code: ${agentCode}\n`;
+            }
+
+            const url = `https://wa.me/60172335577?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+            /* fdfd */
+        });
+    </script>
+</body>
+</html>
